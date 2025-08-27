@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary Eshu ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #fff5f5 0%, #f8e8ff 100%);
+            color: #5a4b69;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: #e75480;
+        }
+
+        h2 {
+            font-size: 3rem;
+            color: #9370db;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* Homepage */
+        #home {
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23e75480" opacity="0.2" d="M30,50 L50,30 L70,50 L50,70 Z"/></svg>');
+        }
+
+        .heart-icon {
+            color: #e75480;
+            font-size: 2rem;
+            margin: 0 5px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #e75480;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            background-color: inherit;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid #e75480;
+            border-radius: 50%;
+            top: 15px;
+            right: -13px;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .right::after {
+            left: -13px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline-img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Love Letter */
+        #love-letter {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%239370db" opacity="0.1" d="M30,30 L70,30 L70,70 L30,70 Z"/></svg>');
+        }
+
+        .letter-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid #e75480;
+            border-radius: 25px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .typed-text {
+            min-height: 300px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            height: 250px;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Surprise */
+        #surprise {
+            text-align: center;
+        }
+
+        .gift-box {
+            font-size: 100px;
+            color: #e75480;
+            cursor: pointer;
+            margin: 40px auto;
+            transition: transform 0.3s ease;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .gift-box:hover {
+            transform: scale(1.1);
+        }
+
+        .surprise-message {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        /* Final Page */
+        #final {
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23e75480" opacity="0.1" d="M50,20 C70,20 80,40 80,60 C80,80 60,80 50,80 C40,80 20,80 20,60 C20,40 30,20 50,20 Z"/></svg>');
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #e75480;
+            margin-top: 40px;
+        }
+
+        /* Animations */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: #e75480;
+            opacity: 0.7;
+            font-size: 20px;
+            animation: float 10s infinite linear;
+        }
+
+        /* Confetti */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            display: none;
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .music-player i {
+            color: #e75480;
+            font-size: 1.5rem;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: #e75480;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                margin-bottom: 30px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .left, .right {
+                left: 0;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .gallery-item {
+                height: 150px;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                margin: 5px 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .letter-container {
+                padding: 20px;
+            }
+            
+            .typed-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="hearts"></div>
+    
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+    
+    <!-- Music Player -->
+    <div class="music-player" id="music-toggle">
+        <i class="fas fa-music"></i>
+    </div>
+    
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2021/10/25/audio_172d7dec90.mp3?filename=soft-sweet-romantic-background-music-6446.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-item" onclick="scrollToSection('home')">Home</div>
+            <div class="nav-item" onclick="scrollToSection('timeline')">Our Story</div>
+            <div class="nav-item" onclick="scrollToSection('love-letter')">Love Letter</div>
+            <div class="nav-item" onclick="scrollToSection('gallery')">Memories</div>
+            <div class="nav-item" onclick="scrollToSection('surprise')">Surprise</div>
+            <div class="nav-item" onclick="scrollToSection('final')">Forever Yours</div>
+        </div>
+    </nav>
+    
+    <!-- Home Section -->
+    <section id="home">
+        <div class="container">
+            <h1>Happy Anniversary Eshu <span class="heart-icon">❤️</span></h1>
+           
+            <div style="margin-top: 40px;">
+                <i class="fas fa-chevron-down heart-icon" onclick="scrollToSection('timeline')" style="cursor: pointer; font-size: 2.5rem;"></i>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Timeline Section -->
+    <section id="timeline">
+        <div class="container">
+            <h2>Our Love Story</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>First Meet <span class="heart-icon">❤️</span></h3>
+                        <p>5th May, 2024</p>
+                        <p>That day when you loved my stand for women and my voice hehe.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Our first kind of Date <span class="heart-icon">❤️</span></h3>
+                        <p>9th july, 2024</p>
+                        <p>We talked for hours at that night and then I got to know that you are the one for me.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>My confession <span class="heart-icon">❤️</span></h3>
+                        <p>21st july, 2014</p>
+                        <p>I cant forget that night when I finally said I love you<span class="heart-icon">❤️</span></p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>The proposal! <span class="heart-icon">❤️</span></h3>
+                        <p>26th August, 2024</p>
+                        <p>The day when I asked will you be mine? And you said yess!! that day was the best day</p>
+                    </div>
+                </div>
+               
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Today <span class="heart-icon">❤️</span></h3>
+                        <p>Still growing together, still in love, still choosing each other every day.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Love Letter Section -->
+    <section id="love-letter">
+        <div class="container">
+            <h2>My Love Letter</h2>
+            <div class="letter-container">
+                <div class="typed-text" id="typed-text"></div>
+            </div>
+        </div>
+    </section>
+   
+    
+    <!-- Surprise Section -->
+    <section id="surprise">
+        <div class="container">
+            <h2>A Surprise For You</h2>
+          
+            <div class="gift-box" onclick="revealSurprise()">
+                <i class="fas fa-gift"></i>
+            </div>
+            <div class="surprise-message" id="surprise-message">
+                <h3>https://drive.google.com/file/d/1Gg42BcTZ2jk-zg_8Q2sqgEpxsXARTP3d/view?usp=sharing</h3>
+                <p>This is a google drive link of the video which I was making on last year girlfriends day. I couldnt complete that video back in the time but I got the footage again so I thought of completing it on this anniversary as a gift to you. Thats why I asked you to give me some days after the surgery. I hope you love it. There are some missing clips though.</p>
+                <p>Forever yours,</p>
+                <p>Aman</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final Section -->
+    <section id="final">
+        <div class="container">
+            <h2>To Many More Years Together</h2>
+            <p>Thank you for being the most amazing partner I could ever ask for.</p>
+            <p>Every day with you is a blessing I don't take for granted.</p>
+            <p>I look forward to creating countless more memories with you.</p>
+            <div class="signature">Forever Yours, Aman <span class="heart-icon">❤️</span></div>
+        </div>
+    </section>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartSymbols = ['❤️', '💕', '💖', '💗', '💓'];
+            
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Typing animation for love letter
+        function typeLetter() {
+            const text = `My Eshu baby,  
+
+From the day you walked into my life, everything changed.  
+Your smile still feels like magic, your voice feels like home, and your love… it’s the most precious thing I’ll ever have.  
+
+This past year with you has been the best part of my life. Every silly moment, every time when we sleep together, every time you’ve held me up when things got hard. I carry all of that in my heart. You make me stronger just by being you.  
+
+You’re not just my girlfriend, you’re my best friend, my safe place, my forever. I don’t ever want to imagine a life without you in it.  
+
+Happy anniversary baby. Here’s to us, to every memory we’ve made, and to a lifetime more that’s waiting ahead.  
+
+With all of me,  
+Aman  
+`;
+            
+            const typedTextElement = document.getElementById('typed-text');
+            let i = 0;
+            let speed = 50; // typing speed in milliseconds
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    typedTextElement.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+            
+            // Start typing when the section is in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        typeWriter();
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(document.getElementById('love-letter'));
+        }
+        
+        // Reveal surprise message
+        function revealSurprise() {
+            const surpriseMessage = document.getElementById('surprise-message');
+            const giftBox = document.querySelector('.gift-box');
+            
+            if (surpriseMessage.style.display === 'block') {
+                surpriseMessage.style.display = 'none';
+                giftBox.innerHTML = '<i class="fas fa-gift"></i>';
+            } else {
+                surpriseMessage.style.display = 'block';
+                giftBox.innerHTML = '<i class="fas fa-box-open"></i>';
+                
+                // Show confetti
+                startConfetti();
+                
+                // Play a sound
+                const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQ');
+                audio.play().catch(e => console.log('Audio play failed:', e));
+            }
+        }
+        
+        // Smooth scrolling to sections
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+        
+        // Show sections on scroll
+        function setupScrollAnimation() {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+        
+        // Music control
+        function setupMusic() {
+            const music = document.getElementById('bg-music');
+            const musicToggle = document.getElementById('music-toggle');
+            let isPlaying = false;
+            
+            // Try to play music with user interaction
+            musicToggle.addEventListener('click', function() {
+                if (isPlaying) {
+                    music.pause();
+                    musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+                } else {
+                    music.play().catch(e => console.log('Audio play failed:', e));
+                    musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+                }
+                isPlaying = !isPlaying;
+            });
+            
+            // Try to autoplay softly
+            setTimeout(() => {
+                music.volume = 0.3;
+                music.play().then(() => {
+                    isPlaying = true;
+                    musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(e => {
+                    console.log('Autoplay prevented. User needs to interact first.');
+                });
+            }, 1000);
+        }
+        
+        // Confetti effect
+        function startConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            canvas.style.display = 'block';
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const confetti = [];
+            const confettiCount = 200;
+            const gravity = 0.5;
+            const terminalVelocity = 5;
+            const drag = 0.075;
+            const colors = [
+                { front: '#e75480', back: '#9e3a5f' },
+                { front: '#9370db', back: '#6a4f9e' },
+                { front: '#ffd700', back: '#b39700' },
+                { front: '#40e0d0', back: '#2c9c90' },
+                { front: '#ff7373', back: '#b35050' }
+            ];
+            
+            // Resize canvas
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+            
+            // Confetti class
+            class Confetti {
+                constructor() {
+                    this.randomModifier = Math.random() * 3;
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.dimensions = {
+                        x: 5 + this.randomModifier,
+                        y: 10 + this.randomModifier
+                    };
+                    this.position = {
+                        x: Math.random() * canvas.width,
+                        y: -10
+                    };
+                    this.rotation = Math.random() * 2 * Math.PI;
+                    this.scale = {
+                        x: 1,
+                        y: 1
+                    };
+                    this.velocity = {
+                        x: Math.random() * 10 - 5,
+                        y: Math.random() * 5 + 5
+                    };
+                    this.oscillationSpeed = 0.5 + Math.random() * 2;
+                    this.oscillationDistance = 0.5 + Math.random() * 2;
+                }
+                
+                update() {
+                    this.velocity.x -= this.velocity.x * drag;
+                    this.velocity.y = Math.min(this.velocity.y + gravity, terminalVelocity);
+                    this.velocity.x += Math.cos(this.oscillationSpeed) * this.oscillationDistance;
+                    
+                    this.position.x += this.velocity.x;
+                    this.position.y += this.velocity.y;
+                    
+                    this.scale.y = Math.cos((this.position.y + this.randomModifier) * 0.1);
+                    this.rotation += this.velocity.x * 0.01;
+                    
+                    if (this.position.y > canvas.height) {
+                        this.position.y = -10;
+                        this.velocity = {
+                            x: Math.random() * 10 - 5,
+                            y: Math.random() * 5 + 5
+                        };
+                    }
+                }
+                
+                draw() {
+                    ctx.translate(this.position.x, this.position.y);
+                    ctx.rotate(this.rotation);
+                    ctx.scale(this.scale.x, this.scale.y);
+                    
+                    ctx.fillStyle = this.scale.y > 0 ? this.color.front : this.color.back;
+                    ctx.fillRect(-this.dimensions.x / 2, -this.dimensions.y / 2, this.dimensions.x, this.dimensions.y);
+                    
+                    ctx.setTransform(1, 0, 0, 1, 0, 0);
+                }
+            }
+            
+            // Create confetti
+            for (let i = 0; i < confettiCount; i++) {
+                confetti.push(new Confetti());
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                confetti.forEach((confetto) => {
+                    confetto.update();
+                    confetto.draw();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Start animation
+            animate();
+            
+            // Stop confetti after 5 seconds
+            setTimeout(() => {
+                canvas.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Initialize everything when page loads
+        window.onload = function() {
+            createHearts();
+            typeLetter();
+            setupScrollAnimation();
+            setupMusic();
+            
+            // Show home section immediately
+            document.getElementById('home').classList.add('show');
+        };
+    </script>
+</body>
+</html>
